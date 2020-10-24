@@ -15,50 +15,29 @@
 #include "infra.h"
 
 void ibubblesort_inc(int* unsrt_bfr, const long size) {
-    for (int i = 0; i <= size; i++) {
-        bool wasSwapped = false;
-        int swap_index;
-        for (int j = 0; j <= size; j++) {
-            if (unsrt_bfr[i] > unsrt_bfr[j]) {
-                swap_index = j;
-                #ifdef __DEBUG
-                    printf("Swapped %d with %d\n", unsrt_bfr[i], unsrt_bfr[j]);
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = 0; j < size - i - 1; j++) {
+           if (unsrt_bfr[j] > unsrt_bfr[j+1]) {
+                #ifdef __INFO
+                    printf("Swapped %d with %d\n", unsrt_bfr[j+1], unsrt_bfr[j]);
                 #endif
-                wasSwapped = true;
-            }
-        }
-        if (wasSwapped == false){
-            #ifdef __DEBUG
-                printf("Not Swapped \n");
-            #endif
-            break;
-        } else if (wasSwapped == true) {
-            iswap(unsrt_bfr + i, unsrt_bfr + swap_index);
+                iswap(unsrt_bfr+j, unsrt_bfr+j+1);
+           }
         }
     }
 }
 
 void ibubblesort_dec(int* unsrt_bfr, const long size) {
-    for (int i = 0; i <= size; i++) {
-        bool wasSwapped = false;
-        int swap_index;
-        for (int j = 0; j <= size; j++) {
-            if (unsrt_bfr[i] < unsrt_bfr[j]) {
-                swap_index = j;
-                #ifdef __DEBUG
-                    printf("Swapped %d with %d\n", unsrt_bfr[i], unsrt_bfr[j]);
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = 0; j < size -i -1; j++) {
+           if (unsrt_bfr[j] < unsrt_bfr[j+1]) {
+                #ifdef __INFO
+                    printf("Swapped %d with %d\n", unsrt_bfr[j+1], unsrt_bfr[j]);
                 #endif
-                wasSwapped = true;
-            }
+                iswap(unsrt_bfr+j, unsrt_bfr+j+1);
+           }
         }
-        if (wasSwapped == false){
-            #ifdef __DEBUG
-                printf("Not Swapped \n");
-            #endif
-            break;
-        } else if (wasSwapped == true) {
-            iswap(unsrt_bfr + i, unsrt_bfr + swap_index);
-        }
+        
     }
 }
 
