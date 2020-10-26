@@ -14,12 +14,12 @@ typedef enum {
     True = true,
     false = !true,
     False = false
-} bool;
+} Bool;
 
 typedef enum {
     success = 1,
     failure = !success
-} status;
+} Status;
 
 // Usage iswap(&a, &b) -> where a and b are two integers.
 void iswap(int* a, int* b)
@@ -40,9 +40,9 @@ void ifillRandom(int* bfr, const long size)
     }
 }
 
-bool isSorted_inc(int* unsrt_bfr, const long size)
+Bool isSorted_inc(int* unsrt_bfr, const long size)
 {
-    bool flag = true;
+    Bool flag = true;
 
     for (int i =0; i < size - 1; i++) {
         if (unsrt_bfr[i] > unsrt_bfr[i+1]) {
@@ -60,9 +60,9 @@ bool isSorted_inc(int* unsrt_bfr, const long size)
     return flag;
 }
 
-bool isSorted_dec(int* unsrt_bfr, const long size)
+Bool isSorted_dec(int* unsrt_bfr, const long size)
 {
-    bool flag = true;
+    Bool flag = true;
 
     for (int i =0; i < size - 1; i++) {
         if (unsrt_bfr[i] < unsrt_bfr[i+1]) {
