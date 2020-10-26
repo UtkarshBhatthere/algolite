@@ -12,7 +12,7 @@
 
 ## Target list for infra features.
 ======================================
-[Y] - Implement a timer to trace sort time.
+[X] - Implement a timer to trace sort time.
 [ ] - Implement a cleaner Log interface.
 [ ] - Implement a better testing setup than testMain.c
 [ ] - Implement a CSV file writer library.
