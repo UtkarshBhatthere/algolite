@@ -1,8 +1,7 @@
-
 /**********************************************************************************************************************
  * MIT License
  * Copyright (c) 2020 Utkarsh Bhatt
- * @About: Library to calculate the time elapsed between operations.
+ * @About: Library to create timepoints and calculate time difference between them.
  **********************************************************************************************************************/
 
 #ifndef _TIMER_H_
@@ -19,7 +18,7 @@
  * @brief:  Populates the passed in double pointer with the with the current CPU tick count.
  * @param:  start: Dbl Ptr to allocate and populate timepoint.
 **************************************************************************************************/
-status createTimepoint(clock_t **start)
+Status createTimepoint(clock_t **start)
 {
     *start = (clock_t *)malloc(sizeof(clock_t));
     if(*start == NULL)
@@ -37,7 +36,7 @@ status createTimepoint(clock_t **start)
  * @brief:  Calculates the coarse difference b/w current timem and passed in timepoint.
  * @param:  start: Ptr to calculate time difference, timeElapsed: Ptr to populate.
 **************************************************************************************************/
-status endTimerCoarse(clock_t *start, uint32_t *timeElapsed)
+Status endTimerCoarse(clock_t *start, uint32_t *timeElapsed)
 {
     clock_t end;
     double intermediateTimeDifference;
@@ -57,7 +56,7 @@ status endTimerCoarse(clock_t *start, uint32_t *timeElapsed)
  * @brief:  Calculates the fine difference b/w current timem and passed in timepoint.
  * @param:  start: Ptr to calculate time difference, timeElapsed: Ptr to populate.
 **************************************************************************************************/
-status endTimerFine(clock_t *start, double *timeElapsed)
+Status endTimerFine(clock_t *start, double *timeElapsed)
 {
     clock_t end;
 
@@ -65,8 +64,24 @@ status endTimerFine(clock_t *start, double *timeElapsed)
     if(end == -1)
         return failure;
     
-    *timeElapsed = (end - *start)/CLOCKS_PER_SEC;
+    *timeElapsed = ((float)(end - *start))/CLOCKS_PER_SEC;
 
     return success;
 }
+
+Status timeElapsedFor(clock_t* start, clock_t* end, double *timeElapsed)
+{
+    if(*end < *start)
+        return failure;
+
+    *timeElapsed = ((float)(*end - *start))/CLOCKS_PER_SEC;
+
+    return success;
+}
+
+Status freeTimepoint(clock_t **timepoint)
+{
+    free(*timepoint);
+}
+
 #endif /*  _TIMER_H_  */
