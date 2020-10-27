@@ -14,9 +14,10 @@
 #include "infra.h"
 
 /**************************************************************************************************
- * @name:   createTimepoint
- * @brief:  Populates the passed in double pointer with the with the current CPU tick count.
- * @param:  start: Dbl Ptr to allocate and populate timepoint.
+ * @name:    createTimepoint
+ * @brief:   Populates the passed in double pointer with the with the current CPU tick count.
+ * @param:   start: Dbl Ptr to allocate and populate timepoint.
+ * @caution: Always free the timepoint once no loger of use.
 **************************************************************************************************/
 Status createTimepoint(clock_t **start)
 {
@@ -48,6 +49,9 @@ Status endTimerCoarse(clock_t *start, uint32_t *timeElapsed)
     intermediateTimeDifference = (end - *start)/CLOCKS_PER_SEC;
     *timeElapsed = (uint32_t)intermediateTimeDifference;
 
+    free(start);
+    start = NULL;
+
     return success;
 }
 
@@ -66,6 +70,9 @@ Status endTimerFine(clock_t *start, double *timeElapsed)
     
     *timeElapsed = ((float)(end - *start))/CLOCKS_PER_SEC;
 
+    free(start);
+    start = NULL;
+
     return success;
 }
 
@@ -82,6 +89,7 @@ Status timeElapsedFor(clock_t* start, clock_t* end, double *timeElapsed)
 Status freeTimepoint(clock_t **timepoint)
 {
     free(*timepoint);
+    *timepoint = NULL;
 }
 
 #endif /*  _TIMER_H_  */
