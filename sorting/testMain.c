@@ -7,44 +7,64 @@
 #include "bubblesort.h"
 #include "selectsort.h"
 #include "rec_bubblesort.h"
+#include "insertionsort.h"
+
+#if defined (__WIN32__)
+    #include <windows.h>
+#elif
+    #include <unistd.h>
+#endif
 
 
 int main() {
-    int arr[1000];
-    clock_t *timepoint;
+    int sample_size = 10000;
+    int arr[sample_size];
+    clock_t *timepointStart, *timepointEnd;
     double timeElapsed;
     
-    ifillRandom(arr, 1000);
+    ifillRandom(arr, sample_size);
 
     // Check if the array is already sorted. Uncomment according to need.
-    printf("is Sorted (inc): %d\n", (int)isSorted_inc(arr, 1000));
-    printf("is Sorted (dec): %d\n", (int)isSorted_dec(arr, 1000));
+    // printf("is Sorted (inc): %d\n", (int)isSorted_inc(arr, sample_size));
+    printf("is Sorted (dec): %d\n", (int)isSorted_dec(arr, sample_size));
+
+    // printf("\n\n\n Input\n");
+    // iprint_array(arr, sample_size);
 
     // Start the timer.
-    createTimepoint(&timepoint);
+    createTimepoint(&timepointStart);
 
     // BubbleSort.
-    // ibubblesort_inc(arr, 1000);
-    ibubblesort_dec(arr, 1000);
+    // ibubblesort_inc(arr, sample_size);
+    // ibubblesort_dec(arr, sample_size);
 
     // SelectionSort.
-    iselectsort_inc(arr, 1000);
-    // iselectsort_dec(arr, 1000);
+    // iselectsort_inc(arr, sample_size);
+    // iselectsort_dec(arr, sample_size);
 
     // Recursive BubbleSort.
-    // ibubblesort_inc_rec(arr, 1000);
-    ibubblesort_dec_rec(arr, 1000);
+    // ibubblesort_inc_rec(arr, sample_size);
+    // ibubblesort_dec_rec(arr, sample_size);
 
+    // InsertionSort.
+    // iInsertionsort_inc(arr, sample_size);
+    iInsertionsort_dec(arr, sample_size);
+
+    
     // End timer.
-    endTimerFine(timepoint, &timeElapsed);
+    createTimepoint(&timepointEnd);
+    timeElapsedFor(timepointStart, timepointEnd, &timeElapsed);
 
-    #ifdef __DEBUG
-        iprint_array(arr, 1000);
-    #endif
+    // Free timers.
+    freeTimepoint(&timepointStart);
+    freeTimepoint(&timepointEnd);
+
+    // printf("\n\n\n Output\n");
+    // iprint_array(arr, sample_size);
     
     // Check if the array is sorted after process. Uncomment according to need.
-    // printf("is Sorted (inc): %d\n", (int)isSorted_inc(arr, 1000));
-    printf("is Sorted (dec): %d\n", (int)isSorted_dec(arr, 1000));
+    // printf("is Sorted (inc): %d\n", (int)isSorted_inc(arr, sample_size));
+    printf("is Sorted (dec): %d\n", (int)isSorted_dec(arr, sample_size));
     printf("Time elapsed in sorting is: %f", timeElapsed);
     return 0; 
 }

@@ -21,13 +21,20 @@ typedef enum {
     failure = !success
 } Status;
 
-// Usage iswap(&a, &b) -> where a and b are two integers.
+// Usage iswap(&a, &b) -> where a and b are two int vars.
 void iswap(int* a, int* b)
 {
     int temp;
     temp = *a;
     *a = *b;
     *b = temp;
+}
+
+// Copies the 'from' value to overwrite 'to' value, i.e. to value gets lost.
+// Usage iCopy(&from, &to) -> where from and to are two int vars.
+void iCopy(int* from, int* to)
+{
+    *to = *from;
 }
 
 void ifillRandom(int* bfr, const long size)
