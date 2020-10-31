@@ -8,13 +8,13 @@
 [ ] - Quick Sort
 [ ] - Heap Sort
 [ ] - Radix Sort
-[ ] - Radix Sort (with non Decimal base)
+[ ] - Radix Sort (with non Decimal base :D)
 
 ## Target list for infra features.
 ======================================
 [X] - Implement a timer to trace sort time.
 [X] - Implement a cleaner Log interface.
-[ ] - Add Logging feature for dumping to file.
+[Y] - Add Logging feature for dumping to file.
 [ ] - Implement a better testing setup than testMain.c
 [ ] - Implement a CSV file writer library.
 
