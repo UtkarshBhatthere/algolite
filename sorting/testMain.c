@@ -8,6 +8,7 @@
 #include "selectsort.h"
 #include "rec_bubblesort.h"
 #include "insertionsort.h"
+#include "mergesort.h"
 
 #if defined (__WIN32__)
     #include <windows.h>
@@ -48,8 +49,11 @@ int main() {
 
     // InsertionSort.
     // iInsertionsort_inc(arr, sample_size);
-    iInsertionsort_dec(arr, sample_size);
+    // iInsertionsort_dec(arr, sample_size);
 
+    // Mergesort.
+    // iMergesort_inc(arr, sample_size);
+    iMergesort_dec(arr, sample_size);
     
     // End timer.
     createTimepoint(&timepointEnd);
