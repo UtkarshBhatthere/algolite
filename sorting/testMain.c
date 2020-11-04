@@ -9,6 +9,7 @@
 #include "rec_bubblesort.h"
 #include "insertionsort.h"
 #include "mergesort.h"
+#include "quicksort.h"
 
 #if defined (__WIN32__)
     #include <windows.h>
@@ -18,19 +19,19 @@
 
 
 int main() {
-    int sample_size = 10000;
+    int sample_size = 100000;
     int arr[sample_size];
     clock_t *timepointStart, *timepointEnd;
     double timeElapsed;
     
     ifillRandom(arr, sample_size);
 
-    // Check if the array is already sorted. Uncomment according to need.
-    // printf("is Sorted (inc): %d\n", (int)isSorted_inc(arr, sample_size));
-    printf("is Sorted (dec): %d\n", (int)isSorted_dec(arr, sample_size));
-
-    // printf("\n\n\n Input\n");
+    printf("Input\n");
     // iprint_array(arr, sample_size);
+
+    // Check if the array is already sorted. Uncomment according to need.
+    printf("is Sorted (inc): %d\n", (int)isSorted_inc(arr, sample_size));
+    printf("is Sorted (dec): %d\n", (int)isSorted_dec(arr, sample_size));
 
     // Start the timer.
     createTimepoint(&timepointStart);
@@ -53,7 +54,11 @@ int main() {
 
     // Mergesort.
     // iMergesort_inc(arr, sample_size);
-    iMergesort_dec(arr, sample_size);
+    // iMergesort_dec(arr, sample_size);
+
+    // Quicksort.
+    iQuickSort_inc(arr, sample_size);
+    // iQuickSort_dec(arr, sample_size);
     
     // End timer.
     createTimepoint(&timepointEnd);
@@ -63,11 +68,11 @@ int main() {
     freeTimepoint(&timepointStart);
     freeTimepoint(&timepointEnd);
 
-    // printf("\n\n\n Output\n");
+    printf("\n\n\n Output\n");
     // iprint_array(arr, sample_size);
     
     // Check if the array is sorted after process. Uncomment according to need.
-    // printf("is Sorted (inc): %d\n", (int)isSorted_inc(arr, sample_size));
+    printf("is Sorted (inc): %d\n", (int)isSorted_inc(arr, sample_size));
     printf("is Sorted (dec): %d\n", (int)isSorted_dec(arr, sample_size));
     printf("Time elapsed in sorting is: %f", timeElapsed);
     return 0; 
