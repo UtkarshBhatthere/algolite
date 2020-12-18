@@ -90,6 +90,8 @@ Status freeTimepoint(clock_t **timepoint)
 {
     free(*timepoint);
     *timepoint = NULL;
+
+    return success;
 }
 
 #endif /*  _TIMER_H_  */

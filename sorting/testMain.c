@@ -10,12 +10,7 @@
 #include "insertionsort.h"
 #include "mergesort.h"
 #include "quicksort.h"
-
-#if defined (__WIN32__)
-    #include <windows.h>
-#elif
-    #include <unistd.h>
-#endif
+#include <unistd.h>
 
 
 int main() {
